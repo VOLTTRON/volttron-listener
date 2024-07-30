@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "volttron-listener"
-version = "0.2.0-rc"
+version = "1.0"
 description = "The volttron-listener agent allows publishing of message bus traffic to standard out."
 authors = ["VOLTTRON Team <volttron@pnnl.gov>"]
 license = "Apache License 2.0"
@@ -18,8 +18,8 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License"
 ]
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-volttron-core = "^1.1.0"
+python = "^3.10"
+volttron-core = {path="../volttron-core", develop=true }
 
 # [tool.poetry.group.dev.dependencies]
 # # formatting, quality, tests
