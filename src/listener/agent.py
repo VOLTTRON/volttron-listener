@@ -22,23 +22,17 @@
 # ===----------------------------------------------------------------------===
 # }}}
 
-
-import logging
 import sys
 from pprint import pformat
 import datetime
 
-from volttron import utils
 from volttron.utils.commands import vip_main
 from volttron.client.messaging.health import STATUS_GOOD
 from volttron.client.vip.agent import Agent, Core, PubSub
-from volttron.client.logs import get_logger, get_default_client_log_config
+from volttron.client.logs import get_logger, setup_logging
+import volttron.utils as utils
 
-# from volttron.platform.agent import utils
-# from volttron.platform.messaging.health import STATUS_GOOD
-# from volttron.platform.vip.agent import Agent, Core, PubSub
-# from volttron.platform.vip.agent.subsystems.query import Query
-
+setup_logging()
 _log = get_logger()
 __version__ = '4.0'
 DEFAULT_MESSAGE = 'Listener Message'
