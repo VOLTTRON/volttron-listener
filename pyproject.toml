@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "volttron-listener"
-version = "1.0.1"
+version = "1.0.3"
 description = "The volttron-listener agent allows publishing of message bus traffic to standard out."
 authors = ["VOLTTRON Team <volttron@pnnl.gov>"]
 license = "Apache License 2.0"
