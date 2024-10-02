@@ -20,6 +20,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 volttron-core = ">=2.0.0rc0"
+
 # [tool.poetry.group.dev.dependencies]
 # # formatting, quality, tests
 # pytest = "^6.2.5"
@@ -47,7 +48,7 @@ ignore_patterns = [
 [tool.yapf]
 based_on_style = "pep8"
 spaces_before_comment = 4
-column_limit = 99
+column_limit = 120
 split_before_logical_operator = true
 
 [tool.poetry.scripts]
