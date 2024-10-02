@@ -21,25 +21,20 @@
 #
 # ===----------------------------------------------------------------------===
 # }}}
-
-
 import logging
 import sys
 from pprint import pformat
 import datetime
 
-from volttron import utils
 from volttron.utils.commands import vip_main
 from volttron.client.messaging.health import STATUS_GOOD
 from volttron.client.vip.agent import Agent, Core, PubSub
-from volttron.client.logs import get_logger, get_default_client_log_config
+from volttron.client.logs import setup_logging
+import volttron.utils as utils
 
-# from volttron.platform.agent import utils
-# from volttron.platform.messaging.health import STATUS_GOOD
-# from volttron.platform.vip.agent import Agent, Core, PubSub
-# from volttron.platform.vip.agent.subsystems.query import Query
-
-_log = get_logger()
+setup_logging(level=logging.DEBUG)
+_log = utils.get_logger()
+#_log.setLevel(logging.DEBUG)
 __version__ = '4.0'
 DEFAULT_MESSAGE = 'Listener Message'
 DEFAULT_HEARTBEAT_PERIOD = 30
@@ -86,13 +81,16 @@ class ListenerAgent(Agent):
     @Core.receiver('onstart')
     def onstart(self, sender, **kwargs):
         # TODO: Bring back version?
+        pass
         #_log.debug("VERSION IS: {}".format(self.core.version()))
         if self._heartbeat_period != 0:
             _log.debug(f"Heartbeat starting for {self.core.identity} published every {self._heartbeat_period}")
             self.vip.heartbeat.start_with_period(self._heartbeat_period)
             self.vip.health.set_status(STATUS_GOOD, self._message)
 
-    @PubSub.subscribe('pubsub', '', all_platforms=True)
+        self.vip.pubsub.subscribe(peer='pubsub', prefix='', callback=self.on_match)
+
+    #@PubSub.subscribe('pubsub', '', all_platforms=True)
     def on_match(self, peer, sender, bus, topic, headers, message):
         """Use match_all to receive all messages and print them out."""
         self._logfn(
@@ -109,6 +107,9 @@ def main():
         vip_main(ListenerAgent, version=__version__)
     except Exception as e:
         _log.exception('unhandled exception')
+        _log.exception(e)
+    finally:
+        _log.debug("Exiting")
 
 
 if __name__ == '__main__':
