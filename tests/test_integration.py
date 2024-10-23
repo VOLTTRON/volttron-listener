@@ -30,6 +30,8 @@ import gevent
 from volttrontesting import PlatformWrapper
 from volttron.client.known_identities import CONTROL
 
+from volttrontesting.platformwrapper import InstallAgentOptions
+
 
 def test_startup_instance(volttron_instance: PlatformWrapper):
     assert volttron_instance.is_running()
@@ -42,8 +44,7 @@ def test_startup_instance(volttron_instance: PlatformWrapper):
     assert vi.is_running()
 
     # agent identity should be
-    auuid = vi.install_agent(agent_dir=agent_pth,
-                             start=False)
+    auuid = vi.install_agent(agent_dir=agent_pth, install_options=InstallAgentOptions(start=False))
     assert auuid is not None
     time.sleep(1)
     started = vi.start_agent(auuid)
