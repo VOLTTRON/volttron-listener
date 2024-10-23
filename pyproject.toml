@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "volttron-listener"
-version = "2.0.0rc1"
+version = "2.0.0rc2"
 description = "The volttron-listener agent allows publishing of message bus traffic to standard out."
 authors = ["VOLTTRON Team <volttron@pnnl.gov>"]
 license = "Apache License 2.0"
@@ -18,24 +18,18 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License"
 ]
 [tool.poetry.dependencies]
-python = "^3.10"
-volttron-core = ">=2.0.0rc0"
+python = ">=3.10,<4.0"
 
-# [tool.poetry.group.dev.dependencies]
-# # formatting, quality, tests
-# pytest = "^6.2.5"
-# mock = "^4.0.3"
-# pre-commit = "^2.17.0"
-# yapf = "^0.32.0"
-# toml = "^0.10.2"
-# isort = "^5.10.1"
-# safety = "^1.10.3"
-# mypy = "^0.942"
-# coverage = "^6.3.2"
-# pytest-cov = "^3.0.0"
-# Sphinx = "^4.5.0"
-# sphinx-rtd-theme = "^1.0.0"
-# volttron-core = "^1.1.0"
+#volttron-core = {path="../volttron-core", develop = true}
+
+[tool.poetry.group.dev.dependencies]
+volttron-testing = {path = "../volttron-testing", develop = true}
+
+# These will either be brought in elsewhere if you have a multi-project environment or uncomment locally to work
+# against a specific path.
+#volttron-lib-zmq = {path = "../volttron-lib-zmq", develop = true}
+#volttron-lib-auth = {path = "../volttron-lib-auth", develop = true}
+
 
 [tool.yapfignore]
 ignore_patterns = [
