@@ -26,6 +26,9 @@ classifiers = [
 python = ">=3.10,<4.0"
 volttron-core = {path="../volttron-core", develop = true}
 
+[tool.poetry.group.dev]
+optional = true
+
 [tool.poetry.group.dev.dependencies]
 volttron-testing = {path = "../volttron-testing", develop = true}
 
