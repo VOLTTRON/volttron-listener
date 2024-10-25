@@ -31,6 +31,8 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 volttron-testing = {path = "../volttron-testing", develop = true}
+volttron-lib-zmq = {path = "../volttron-lib-zmq", develop = true}
+volttron-lib-auth = {path = "../volttron-lib-auth", develop = true}
 
 # These will either be brought in elsewhere if you have a multi-project environment or uncomment locally to work
 # against a specific path.
