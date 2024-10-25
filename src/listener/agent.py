@@ -26,6 +26,7 @@ import sys
 from pprint import pformat
 import datetime
 
+from volttron.client.vip.agent.subsystems.configstore import VALID_ACTIONS
 from volttron.utils.commands import vip_main
 from volttron.client.messaging.health import STATUS_GOOD
 from volttron.client.vip.agent import Agent, Core, PubSub
@@ -81,7 +82,6 @@ class ListenerAgent(Agent):
     @Core.receiver('onstart')
     def onstart(self, sender, **kwargs):
         # TODO: Bring back version?
-        pass
         #_log.debug("VERSION IS: {}".format(self.core.version()))
         if self._heartbeat_period != 0:
             _log.debug(f"Heartbeat starting for {self.core.identity} published every {self._heartbeat_period}")
